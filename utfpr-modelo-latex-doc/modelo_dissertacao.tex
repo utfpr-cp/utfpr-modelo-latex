@@ -1,0 +1,249 @@
+%% Exemplo de Utilizacao do Estilo de formatacao utfprcptex2  (http: )
+%% para elaboração de Teses, Dissertações, etc...
+%% Autores: Rodrigo Rodrigues Sumar (sumar@utfpr.edu.br)
+%%          Bruno Augusto Angélico (bangelico@utfpr.edu.br)
+%% Colaboradores:
+%%
+%%
+\documentclass[oneside,       % para impressão somente na frante. Oposto a twoside
+               openright,     % capítulos começam em pág ímpar (insere página vazia caso preciso)
+               a4paper,       % tamanho do papel.
+               12pt,          % tamanho da fonte
+               english,		  % idioma adicional para hifenização
+%               french,		  % idioma adicional para hifenização
+               spanish,		  % idioma adicional para hifenização
+               brazil		  % o último idioma é o principal do documento
+              ]{utfprcptex2}
+
+% ------
+%%% Pacotes diversos
+% ------
+\usepackage[latin1]{inputenc} % pacote para acentuacao direta
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % pacote matematico
+\usepackage{graphicx} % pacote grafico
+\usepackage[bottom]{footmisc}
+\usepackage{subfig}
+\usepackage{threeparttable}
+
+
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ambientes para definições, exemplos e teoremas
+\newtheorem{problema}{Problema}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolário}
+\newtheorem{exemplo}{Exemplo}
+\newtheorem*{observacao}{Observação}
+\newenvironment{prova}
+{\noindent {\textit{Demonstração}.}} {{\par\hfill$\Box$ \\}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Para fonte Times (Nimbus Roman) descomente linha abaixo
+%\fontetipo{times}
+
+% Para fonte Helvetica (Nimbus Sans) descomente linhas abaixo
+\fontetipo{arial}
+
+
+
+
+%O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
+\fazlistasiglas[Lista de Siglas] % Parâmetro opcional é o título da lista.
+
+%%%% Ferramenta para criação de glossários
+\makeglossaries%% Não comente esta linha se estivar usando glossario
+\include{entradas_glossario}%% Entradas do glossário - Comente para remover este item
+%%%%
+
+% ---------- Preambulo ----------
+%%%%%%%% Dados para Capa e outros elementos pretextuais
+\instituicao{Universidade Tecnol\'ogica Federal do Paran\'a}
+\unidade{Câmpus Cornélio Procópio}
+\diretoria{Diretoria de Pesquisa e Pós-Graduação}
+\coordenacao{Programa de Pós-Graduação em Engenharia Elétrica}
+\curso{Mestrado em Engenharia Elétrica}
+\documento{Dissertação}
+\nivel{Mestrado}
+\titulacao{Mestre}
+\area{Engenharia Elétrica}
+\titulo{T\'itulo em Portugu\^es} % titulo do trabalho em português
+\title{Title in English} % titulo do trabalho em inglês
+\autor{Nome do Autor} % autor do trabalho
+\cita{SOBRENOME, Nome} % sobrenome (maiúsculas), nome do autor do trabalho
+
+\palavraschave{Palavra-chave 1. Palavra-chave 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho - Devem ser inseridas de 3 a 5 palavras chave
+\keywords{Keyword 1. Keyword 2. (entre 3 e 5 palavras)} % palavras-chave do trabalho em inglês - Devem ser inseridas de 3 a 5 palavras chave
+\comentario{\UTFPRdocumentodata\ apresentada ao \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata\ como requisito parcial para obten\c{c}\~ao do título de ``\UTFPRtitulacaodata\ em \UTFPRareadata''.}
+
+
+%%%%%%%%%% Dados de Orientador e Coorientador
+\orientador[Orientador]{Prof. Dr.}{Nome do Orientador} % nome do orientador do trabalho
+%\orientador[Orientadora:]{Nome da Orientadora} % <- no caso de orientadora, usar esta sintaxe
+%\coorientador{Nome do Co-orientador} % nome do co-orientador do trabalho, caso exista
+\coorientador[Co-orientadora]{Profa. Dra.}{Nome da Co-orientadora} % <- no caso de co-orientadora, usar esta sintaxe
+%\coorientador[Co-orientadores:]{Nome do Co-orientador} % no caso de 2 co-orientadores, usar esta sintaxe
+%\coorientadorb{}	% este comando inclui o nome do 2o co-orientador
+
+\coordenadorUTFPR[Coordenadora]{Grau}{Nome do coordenador} % Coordenador do PPGEEL
+\local{Cornélio Procópio} % cidade
+\data{\UTFPRanodefesa} % Aqui deve ir o ano da defesa.
+
+%%%% Dados para Folha de Aprovação%
+\textoaprovacao{Esta \UTFPRdocumentodata\ foi julgada adequada para obten\c c\~ao do T\'itulo de ``\UTFPRtitulacaodata\ em \UTFPRareadata'' e aprovado em sua forma final pelo \UTFPRcoordenacaodata\ da \UTFPRinstituicaodata.}
+\numerodemembrosnabanca{5} % Isso decide se a lista de assinaturas será colocada em duas colunas
+\orientadornabanca{sim} % Se faz parte da banca definir como sim
+\coorientadornabanca{sim} % Se faz parte da banca definir como sim
+\primeiroassina[Título \\ Universidade]{Primeiro Membro da Banca}
+\segundoassina[Título \\Universidade]{Segundo Membro da Banca}
+\terceiroassina[Título \\Universidade]{Terceiro Membro da Banca}
+%\quartoassina[Título \\Universidade]{Quarto Membro da Banca}
+%\quintoassina[Título \\Universidade]{Quinto Membro da Banca}
+%\sextoassina[Título \\Universidade]{Sexto Membro da Banca}
+%\setimoassina[Título \\Universidade]{Sétimo Membro da Banca}
+\datadefesaUTFPR{29}{07}{2012} %% A data deve ser inserida no formato dd/mm/aaaa
+%%%%% Comentar para versao impressa
+\versaoeletronica{``A Folha de Aprovação assinada encontra-se na Coordenação do Curso do Programa''}% Texto a ser inserido na versão eletronica do documento.
+
+%---------- Inicio do Documento ----------
+\begin{document}
+%\hypersetup{pageanchor=false}
+\capa % geração automática da capa
+\pretextual
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%% Geracao automatica da folha de rosto
+%%%% Opções da Folha de Rosto
+%%%%    - semficha
+%%%%    - comficha: modelo definido pela classe. Serve para contar paginas na
+%%%%                geração da ficha pela biblioteca.
+%%%%    - pdf: informar o nome do arquivo pdf com a ficha fornecinada
+%%%%           pela bibliteca.
+\folhaderosto[Fichacatalografica]
+
+
+\termodeaprovacao % <- ainda a ser implementado corretamente
+
+%%% Errata
+\include{errata}
+%%%
+
+%%%%% dedicatória (opcional)
+\begin{dedicatoria}
+Texto da dedicat\'oria.
+\end{dedicatoria}
+
+%%%%%% agradecimentos (opcional)
+\begin{agradecimentos}
+Texto dos agradecimentos.
+\end{agradecimentos}
+
+%%%%% epigrafe (opcional)
+\begin{epigrafe}
+Texto da ep\'igrafe.
+\end{epigrafe}
+
+%%%%% resumo
+\begin{resumo}
+Texto do resumo (m\'aximo de 500 palavras).
+\end{resumo}
+%
+%%%%% abstract em ingles
+\begin{abstract}
+SOBRENOME, Nome. \textbf{\UTFPRtitledata.} \UTFPRanodefesa. \pageref{LastPage} f. Master Thesis -- Electrical Engineering Graduate Program, Federal University of Technology - Paraná. Cornélio Procópio, \UTFPRdatadata.
+
+This is the english abstract. (maximum of 500 words).
+
+\textbf{Keywords:} \UTFPRkeywordsdata
+\end{abstract}
+
+%%%%% abstract em frances
+\begin{resume}
+SOBRENOME, Nome. \textbf{Titre Français.} \UTFPRanodefesa. \pageref{LastPage} f. Mémoire de Maîtrise -- Programme d'études Supérieures en Génie Électrique, Université Technologique Fédérale - Paraná. Cornélio Procópio, \UTFPRdatadata.
+
+Il s'agit d'un résumé en français. (maximum de 500 mots).
+
+\textbf{Mots-clés:} mot-clé 1. mot-clé 2. (3 à 5 mots)
+\end{resume}
+
+%%%%%% Lista de Ilustrações conforme ABNT
+\listadeilustracoes
+%%% Para Gera lista individuais de comentar o comando acima e
+%%% descomentar das listas individuais
+%%%%%%%%%%%
+%%%% listas (opcionais, mas recomenda-se a partir de 5 elementos)
+%%%%
+\listadefiguras % geração automática da lista de figuras
+\listadetabelas % geração automática da lista de tabelas
+\listadequadros % geração automática da lista de quadros
+\listadegraficos % geração automática da lista de gráficos
+\listadefotos % geração automática da lista de fotos
+\listadefluxogramas % geração automática da lista de fluxogramas
+\listadesiglas  % geração automática da lista de siglas
+\listadeabreviaturas  % geração automática da lista de abreviaturas
+\listadeacronimos   % geração automática da lista de acrônimos
+\listadesimbolos % geração automática da lista de símbolos
+
+\listofalgorithms %%%%% EM FASE DE TESTES
+
+% sumario
+\sumario % geração automática do sumario
+
+%\cleardoublepage
+%\hypersetup{pageanchor=true}
+\textual
+
+%---------- Inicio do Texto ----------
+% recomenda-se a escrita de cada capitulo em um arquivo texto separado (exemplo: intro.tex, fund.tex, exper.tex, concl.tex, etc.) e a posterior inclusao dos mesmos no mestre do documento utilizando o comando \input{}, da seguinte forma:
+\input{capitulo1/cap1.tex}
+\input{capitulo2/cap2.tex}
+\input{capitulo3/cap3.tex}
+
+
+%% Formatação de páginas de elementos pós-textuais
+\postextual%% Não comente esta linha
+%---------- Referencias ----------
+\bibliography{referencias/referencias} % geracao automatica das referencias a partir do arquivo reflatex.bib
+
+%% Glossário
+\incluirglossario%% Comente para remover este item
+
+%---------- Apendices (opcionais) ----------
+\apendices
+% Imprime uma página indicando o início dos apêndices
+\partapendices*
+
+\chapter{Nome do Ap\^endice}
+
+Use o comando {\ttfamily \textbackslash apendice} e depois comandos {\ttfamily \textbackslash chapter\{\}}
+para gerar t\'itulos de ap\^en-dices.
+
+\section{Teste de Seção em um Apêndice}
+
+% ---------- Anexos (opcionais) ----------
+\anexos
+% Imprime uma página indicando o início dos anexos
+\partanexos*
+
+
+
+\chapter{Nome do Anexo}
+
+\index{Use} Use o comando {\ttfamily \textbackslash anexo} e depois comandos {\ttfamily \textbackslash chapter\{\}}
+para gerar t\'itulos de anexos.
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%\onecolindex %% Para indice em uma coluna
+\twocolindex  %% Para indice em duas colunas
+\indiceremissivo
+%---------------------------------------------------------------------
+
+\end{document} 

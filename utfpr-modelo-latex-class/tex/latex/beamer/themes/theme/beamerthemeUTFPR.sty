@@ -1,0 +1,28 @@
+% Copyright 2007 by Marco Barisione
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+\DeclareOptionBeamer{alternativetitlepage}[true]{\PassOptionsToPackage{alternativetitlepage=#1}{beamerinnerthemefancyUTFPR}}
+\DeclareOptionBeamer{titlepagelogo}{\PassOptionsToPackage{titlepagelogo=#1}{beamerinnerthemefancyUTFPR}}
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemefancyUTFPR}}
+\DeclareOptionBeamer{pageofpages}{\PassOptionsToPackage{pageofpages=#1}{beamerouterthemedecolinesUTFPR}}
+\DeclareOptionBeamer{titleline}[true]{\PassOptionsToPackage{titleline=#1}{beamerouterthemedecolinesUTFPR}}
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemedecolinesUTFPR}}
+\DeclareOptionBeamer{watermarkheight}{\PassOptionsToPackage{watermarkheight=#1}{beamerouterthemedecolinesUTFPR}}
+\DeclareOptionBeamer{watermarkheightmult}{\PassOptionsToPackage{watermarkheightmult=#1}{beamerouterthemedecolinesUTFPR}}
+
+\ProcessOptionsBeamer
+
+\useinnertheme{fancyUTFPR}
+\useoutertheme{decolinesUTFPR}
+\usecolortheme{utfpr}
+
+\setbeamertemplate{navigation symbols}{}
+
+\mode
+<all>

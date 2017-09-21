@@ -1,0 +1,752 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------- Segundo Capitulo ----------
+\chapter{Desenvolvimento}
+\label{chap:desenv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A seguir ilustra-se a forma de incluir figuras, tabelas, equa\c{c}\~oes, siglas e s\'imbolos no documento, obtendo indexa\c{c}\~ao autom\'atica em suas respectivas listas. A numera\c{c}\~ao sequencial de figuras, tabelas e equa\c{c}\~oes ocorre de modo autom\'atico. Refer\^encias cruzadas s\~ao obtidas atrav\'es dos comandos {\ttfamily \textbackslash label\{\}} e {\ttfamily \textbackslash ref\{\}}. Por exemplo, n\~ao \'e necess\'ario saber que o n\'umero deste cap\'itulo \'e~\ref{chap:desenv} para colocar o seu n\'umero no texto. Isto facilita muito a inser\c{c}\~ao, remo\c{c}\~ao ou reloca\c{c}\~ao de elementos numerados no texto (fato corriqueiro na escrita e corre\c{c}\~ao de um documento acad\^emico) sem a necessidade de renumer\'a-los todos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Errata}
+\label{sec:errata}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Errata}
+
+A errata é um documento simples, onde devem ser identificados os erros que se encontram no trabalho. Neste documento, deve-se apontar o erro e indicar qual é a forma correta que o substitui.
+\begin{figure}[!htb]
+\centering
+\caption{Definição de Errata e Exemplo.\label{fig:errata1}}
+	\includegraphics[width=\textwidth]{./figuras/errata1.jpg} \\
+\fonte{http://www.normasabnt.net/errata-abnt/}
+\end{figure}
+
+Segundo as regras da ABNT, a errata é um elemento opcional e deve ser inserido logo após a folha de rosto. Deve ser apresentada em folha A4 avulsa e deve conter a referência do trabalho e o texto da errata. Ela deve conter o nome do autor do trabalho, título e subtítulo do trabalho, caso haja, a natureza do trabalho (tipo de trabalho, objetivo, nome da instituição a que é submetido e área de concentração), data de aprovação, nome, titulação e assinatura dos componentes da banca examinadora e instituições que pertencem.
+\begin{figure}[!htb]
+\centering
+\caption{Exemplo de Errata.\label{fig:errata2}}
+	\includegraphics[width=\textwidth]{./figuras/errata2.jpg} \\
+\fonte{http://www.normasabnt.net/errata-abnt/}
+\end{figure}
+
+
+A errata pode ser inserida diretamente ou utilizando-se o arquivo \texttt{errata.tex} e comando \verb|\include|. Em ambos os casos deve ser utilizado o ambiente \texttt{errata} como  segue,
+\begin{lstlisting}
+\begin{errata}
+Referencia
+\begin{table}[htb]
+\center
+\footnotesize
+\begin{tabular}{|p{1.4cm}|p{1cm}|p{3cm}|p{3cm}|}
+  \hline
+   \textbf{Folha} & \textbf{Linha}  & \textbf{Onde se lê}  & \textbf{Leia-se}  \\
+    \hline
+    1 & 10 & auto-conclavo & autoconclavo\\
+   \hline
+\end{tabular}
+\end{table}
+\end{errata}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lista de Ilustrações}
+\label{sec:listailustracoes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Ilustrações}
+
+Elemento opcional. Elaborada de acordo com a ordem apresentada no texto, com cada item designado por seu nome específico, travessão, título e respectivo número da folha ou página. É inserida no do documento utilizando-se o comando \verb|\listadeilustracoes|. 
+
+Quando inserida a lista de ilustrações as demais listas referentes aos itens agrupados na mesmas devem ser removidas.
+
+Quando necessário, recomenda-se a elaboração de lista própria para cada tipo de ilustração (desenhos, esquemas, fluxogramas, fotografias, gráficos, mapas, organogramas, plantas, quadros, retratos e outras). 
+
+Foram criados ambientes e listas para alguns tipos de ilustração específicos (fluxogramas, fotografias, gráficos, quadros) que serão apresentados nas próximas seções.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Figuras}
+\label{sec:figuras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{figuras} Na figura~\ref{fig:dummy} é apresentado um exemplo de figura flutuante, inserida utilizando-se o ambiente \texttt{figure}. Esta figura aparece automaticamente na lista de figuras através do comando \verb|\listadefiguras|. Para uso avan\c{c}ado de figuras no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
+
+\begin{figure}[!htb]
+   %\captionsetup{width=0.97\textwidth}
+   \caption[Exemplo de uma figura]{Exemplo de uma figura onde aparece uma imagem sem nenhum significado especial.}
+   \label{fig:dummy}
+   \fbox{\begin{minipage}{0.97\linewidth}\centering
+	     \includegraphics[width=0.2\textwidth]{./figuras/dummy.png} \end{minipage}}% <- formatos PNG, JPG e PDF
+   \fonte{\cite{abnTeX2009}}
+\end{figure}
+
+Na figura~\ref{fig:gdimotes} \'e apresentado um exemplo de gr\'aficos lado a lado com a mesma legenda.
+
+\begin{figure}[!htb]
+\centering
+%\begin{measuredfigure}
+\caption{Série MICA2 dos sensores Motes.\label{fig:gdimotes}}
+	\includegraphics[height=5cm]{./figuras/mica2back.jpg} \quad
+	\includegraphics[height=5cm]{./figuras/mica2dotback.jpg}\newline
+\fonte{De algun lugar}
+%\end{measuredfigure}
+\end{figure}
+
+Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a lado com legendas distintas.
+
+\begin{figure}[!htb]
+ % \captionsetup{width=\textwidth}
+  \caption{Mapas de Memória do AVR \cite{ATmega8515:datasheet}.}
+  \label{fig:avrmem-map}
+  \begin{center}
+  \mbox{%
+    \subfloat[b][Memória de Programa]{
+    \includegraphics[height=10cm]{./figuras/avrprg.png}
+    \label{fig:avr-prgmem}
+    }
+    \subfloat[b][Memória de Dados]{
+    \includegraphics[height=10cm]{./figuras/avrdata.png}
+    \label{fig:avr-datamem}
+    }
+       }
+  \fonte{De algun lugar}
+  \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Gráficos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{graficos} No gráfico~\ref{grf:dist-pop-bra} \'e apresentado um exemplo de um gráfico, inserida utilizando-se o ambiente \texttt{grafico}. Esta gráfico aparece automaticamente na lista de gráficos através do comando \verb|\listadegraficos|. Para uso avan\c{c}ado de gráficos no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
+
+\begin{grafico}[!htb]
+ % \captionsetup{width=\textwidth}
+  \caption{Distribuição residencial da população brasileira em um exemplo de gráfico em linhas.\label{grf:dist-pop-bra}}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{./figuras/distribuicao-da-populacao-brasileira.jpg}
+  \fonte{Site da Internet - http://mundoeducacao.bol.uol.com.br/geografia/tipos-graficos.htm}
+  \end{center}
+\end{grafico}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fotografias}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{fotografias} No gráfico~\ref{ftr:spring_dream} \'e apresentado um exemplo de um gráfico, , inserida utilizando-se o ambiente \texttt{foto}. Esta gráfico aparece automaticamente na lista de fotografias através do comando \verb|\listadefotos|. Para uso avan\c{c}ado de gráficos no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
+
+\begin{foto}[!htb]
+ % \captionsetup{width=\textwidth}
+  \caption{Sonho de Primavera, Vale do Ant\'ilope, Reserva da Papoula, California.}
+  \label{ftr:spring_dream}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{./figuras/spring.jpg}
+  \fonte{Site da Internet - http://webshots.com - Autor: Kevin McNeal}
+  \end{center}
+\end{foto}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fluxogramas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{fluxogramas} No fluxograma~\ref{flx:prob_pc} \'e apresentado um exemplo de um fluxograma, inserida utilizando-se o ambiente \texttt{fluxo}. Esta gráfico aparece automaticamente na lista de fluxogramas através do comando \verb|\listadefluxogramas|. Para uso avan\c{c}ado de gráficos no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
+
+Caros pais, avós, amigos de trabalho e outras pessoas que não mexem em computador. Nós não sabemos magicamente fazer tudo em todos os programas. Quando nós ajudamos vocês, estamos normalmente fazendo isso:
+\begin{fluxo}[!htb]
+  \caption{Fluxograma para solucionar problemas no PC.}
+  \label{flx:prob_pc}
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{./figuras/fluxograma_cut.jpg}
+  \fonte{Site da Internet - https://dennytorres.wordpress.com/tag/fluxograma/}
+  \end{center}
+\end{fluxo}
+
+Por favor imprima e prenda esse fluxograma perto de sua tela. Parabéns, você é o expert do computador do pedaço.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tabela e Quadro: Diferenças}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{tabelas} As tabelas e os quadros facilitam a compreensão do fenômeno em estudo, uma vez que apresentam os dados de modo resumido, oferecendo uma visão geral do conteúdo em questão.
+
+A tabela segue a norma NBR 14724:2011 subitem 5.9, que por sua vez, remete as Normas de Apresentação Tabular do Instituto Brasileiro de Geografia e Estatística - IBGE (1993). Já o quadro é citado no subitem 5.8 da NBR 14724:2011 como uma das categorias de ilustrações.
+
+Basicamente, a diferença entre ambos está relacionada a formatação. A tabela apresenta os seguintes elementos: título, cabeçalho, conteúdo, fonte e, se necessário, nota(s) explicativa(s) (geral e/ou específica). É dividida por linhas na horizontal, porém as bordas  laterais não podem ser fechadas. Já o quadro, embora siga especificações semelhantes  (título, fonte, legenda, nota(s) e outras informações necessárias), terá suas  laterais  fechadas.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quadros}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{quadros} São apresentados os exemplos dos quadros~\ref{quad:descricao} e \ref{quad:modelo}, utiliza-se o ambiente \texttt{quadro}, que aparecem automaticamente na lista de quadros através do comando \verb|\listadequadros|. Informa\c{c}\~oes sobre a constru\c{c}\~ao de quadros no \LaTeX\ podem ser encontradas na literatura especializada~\cite{Lamport1986,Buerger1989,Kopka2003,Mittelbach2004}.
+
+\begin{quadro}[!htb]
+\caption{Áreas de Desenvolvimento de Competências}\label{quad:descricao}
+\centering
+	\begin{tabular}{|l|p{0.5\linewidth}|}
+		\hline
+		 \textbf{Áreas de Desenvolvimento} & \textbf{Descrição} \\
+		\hline
+		1. Competências sobre processos & Conhecimento nos processos de trabalho \\
+        \hline
+		2. Competências técnicas & Conhecimento técnico nas tarefas a serem desempenhadas e tecnologias
+empregadas nestas tarefas \\
+        \hline
+		3. Competências sobre a organização & Saber organizar os fluxos de trabalho \\
+        \hline
+		4. Competências de serviço & Aliar as competências técnicas com o impacto que estas ações terão para o
+cliente consumidor \\
+		\hline
+        5. Competências sociais & Atitudes que sustentam o comportamento do indivíduo: saber comunicar-se e
+responsabilizar-se pelos seus atos. \\
+		\hline
+	\end{tabular}
+    \fonte{Zarifian (1999) apud Fleury e Fleury (2004).}
+\end{quadro}
+
+
+
+\begin{quadro}[!htb]
+\caption{Modelo de Quadro}\label{quad:modelo}
+\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		 \textbf{ÁREAS} & \textbf{UNESP} & \textbf{UNICAMP} & \textbf{USP} & \textbf{TOTAL}\\
+		\hline
+        \multicolumn{1}{|l|}{Interdisciplinar} & 2 & 2 & 2 & 6 \\
+        \hline
+        \multicolumn{1}{|l|}{Biologia e da Saúde} & 2 & 2 & 2 & 6 \\
+        \hline
+        \multicolumn{1}{|l|}{Exatas e Tecnológicas} & 2 & 2 & 2 & 6 \\
+        \hline
+        \multicolumn{1}{|l|}{Humanas e Artes} & 2 & 2 & 2 & 6 \\
+        \hline
+        \multicolumn{1}{|l|}{TOTAL} & 8 & 8 & 8 & 24 \\
+        \hline
+	\end{tabular}
+    \fonte{Fonte Modelo.}
+\end{quadro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tabelas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Também são apresentados os exemplos das tabelas~\ref{tab:correlacao} e \ref{tab:cronograma}, que aparecem automaticamente na lista de tabelas. Informa\c{c}\~oes sobre a constru\c{c}\~ao de tabelas no \LaTeX\ podem ser encontradas na literatura especializada~\cite{Lamport1986,Buerger1989,Kopka2003,Mittelbach2004}.\\\vspace{12pt}
+
+
+\begin{table}[!htb]
+	\caption[Exemplo de uma tabela]{Exemplo de uma tabela mostrando a correla\c{c}\~ao entre x e y.}
+	\label{tab:correlacao}
+	\centering
+	\begin{tabular}{cc}
+		\hline
+		x & y \\
+		\hline
+		1 & 2 \\
+		3 & 4 \\
+		5 & 6 \\
+		7 & 8 \\
+		\hline
+	\end{tabular}
+    \vspace{8pt} %%%% Deve ser acrescentado para que haja espaço entre o final da tabela e a fonte.
+    \fonte{Autoria pr\'opria.}
+\end{table}
+
+
+\begin{table}[!htb]
+ \caption{Exemplo de cronograma usando \textit{bullet}}
+ \label{tab:cronograma}
+ \begin{center}
+  \begin{tabular}{l||c|c|c|c|c|c|c|c}
+    \hline
+    \multicolumn{9}{c}{2003} \\ \hline \hline
+    \multicolumn{1}{c||}{Fase} & Março     & Abril     & Maio     & Junho   & Julho & Agosto & Setembro & Outubro\\ \hline
+    1    & $\bullet$ &           &          &         &  &  &  & \\
+    2    &           & $\bullet$ & $\bullet$&         &  &  &  &\\
+    3    &           &           & $\bullet$& $\bullet$ &  &  &  &\\
+    4    &           &           &          &         &  $\bullet$& $\bullet$ &  &\\
+    5    &           &           & & &  $\bullet$& $\bullet$ &  &\\
+    6    &           &           & & &  &  &  $\bullet$&$\bullet$\\
+    \hline
+  \end{tabular}
+ \vspace{8pt} %%%% Deve ser acrescentado para que haja espaço entre o final da tabela e a fonte.
+  \fonte{Fonte Modelo.}
+ \end{center}
+ \end{table}
+
+\section{Equações}
+
+\TeX tem três modos básicos: um modo de texto, usado para a composição de texto ordinário, e dois tipos de modos matemáticos, um modo matemático comum para fórmulas matemáticas \textit{inline} e um modo de exibição matemática, usado para fórmulas matemáticas numeradas.
+
+A seguir são apresentados os comandos básicos para inserção de equação e também algums comandos implementados por pacotes matemáticos.
+
+\subsection{Equações \textit{Inline}}
+
+A equação as ser escrita \textit{inline} deve ser cercada por cifrões únicos. Por exemplo, "$ a ^ 2 + b ^ 2 = c ^ 2 $". Os cifrões envolvendo esta expressão fazem \TeX entrar e sair do modo matemático (normal).
+
+O exemplo abaixo ilustra a quebra de linha em equações muito longas:
+
+\begin{lstlisting}
+Considere $T$ um caterpillar com diametro $d$. Então $V(T)= \big\{ x_r: r = 1, 2,\ldots , d - 1,\allowbreak\text{ and } \deg(x_r)> 1\big\} \cup \left\{ x_{ri} : i = 1, 2, \ldots, t_r, r = 1, 2,\ldots, d - 1, \text{ e }\deg(x_{ri}) =1 \right\}$.
+\end{lstlisting}
+
+Considere $T$ um caterpillar com diametro $d$. Então $V(T)= \big\{ x_r: r = 1, 2,\ldots , d - 1,\allowbreak\text{ and } \deg(x_r)> 1\big\} \cup \left\{ x_{ri} : i = 1, 2, \ldots, t_r, r = 1, 2,\ldots, d - 1, \text{ e }\deg(x_{ri}) =1 \right\}$.
+
+\subsection{Equações Numeradas - \textit{Display math mode}}
+
+
+O texto delimitado por um par de parênteses (\verb|\[| e \verb|\]|) ou por ``ambientes de equação'' como \verb|\begin{align} ... \end{align}| ou \verb|\begin{equation} ... \end{equation}| é processado pelo \TeX em ``display math mode''. Isso significa que a expressão incluída é exibida em uma linha separada (ou várias linhas, no caso de equações multilinhas). As fórmulas matemáticas mais longas e as fórmulas numeradas são normalmente exibidas dessa maneira. Observe que os comandos para entrar e sair do modo de exibição matemática são distintos, em contraste com o modo matemático ordinário, onde um único cifrão serve tanto como comando de entrada e saída. Isso permite uma melhor verificação de erros. Esta é uma grande diferença entre \LaTeX e AmSTeX ou Plain TeX.  Nas duas últimas versões \TeX, um cifrão (\$\$) é usado para indicar o início eo fim do modo de exibição de matemática. Mas o cifrão duplo (ainda) Funciona no \LaTeX, não é parte do conjunto de comandos ``oficial'' \LaTeX e seu uso é desencorajado.
+
+
+
+A transformada de Laplace é dada na equação (\ref{eq:laplace}), enquanto a equação (\ref{eq:dft}) apresenta a formulação da transformada discreta de Fourier bidimensional\footnote{Deve-se reparar na formatação estéticamente perfeita destas equações!}. São exemplos do ambiente equation.
+
+\begin{equation}
+X(s) = \int\limits_{t = -\infty}^{\infty} x(t) \, \text{e}^{-st} \, dt
+\label{eq:laplace}
+\end{equation}
+
+\begin{equation}
+F(u, v) = \sum_{m = 0}^{M - 1} \sum_{n = 0}^{N - 1} f(m, n) \exp \left[ -j 2 \pi \left( \frac{u m}{M} + \frac{v n}{N} \right) \right]
+\label{eq:dft}
+\end{equation}
+
+
+O ambiente \textit{align}, do pacote amsmath: Equações numeradas e alinhadas nos pontos marcados com \verb|&|,  geralmente antes de uma relação.
+\begin{align}
+a_1& =b_1+c_1\\
+a_2& =b_2+c_2-d_2+e_2
+\end{align}
+
+O ambiente \textit{split}, também amsmath, alinhamento similar ao \textit{align}, mas a construção inteira se encaixa com a equação e é numerada como uma unidade.
+\begin{equation}\label{eq:xx}
+\begin{split}
+a& =b+c-d\\
+ & \quad +e-f\\
+ & =g+h\\
+ & =i
+\end{split}
+\end{equation}
+
+O ambiente \textit{multline}, do amsmath para expressões longas que utilizam mais de uma linha, sem pontos de alinhamento especifico.
+with no specifed alignment points.
+\begin{multline}
+a+b+c+d+e+f+g+h+i+j+k+\\
+l+m+n+o+p+q+r+s+t+w+x+y+z
+\end{multline}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Siglas e S\'imbolos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Siglas} \index{Símbolos}
+O pacote \textsc{abn}\TeX\ permite ainda a defini\c{c}\~ao de siglas e s\'imbolos com indexa\c{c}\~ao autom\'atica atrav\'es dos comandos \verb|\sigla{sigla}{significado}| e \verb|\simbolo{símbolo}{significado}|. Por exemplo, o significado das siglas \sigla{PPGEE}{Programa de Programa de Pós-Graduação em Engenharia Elétrica}, \sigla{COELT}{Coordenação de Eletrotécnica} e \sigla{UTFPR}{Universidade Tecnológica Federal do Paraná} aparecem automaticamente na lista de siglas, bem como o significado dos s\'imbolos \simbolo{$\lambda$}{comprimento de onda}, \simbolo{$v$}{velocidade} e \simbolo{$f$}{frequ\^encia} aparecem automaticamente na lista de s\'imbolos. Mais detalhes sobre o uso destes e outros comandos do \textsc{abn}\TeX\ s\~ao encontrados na sua documenta\c{c}\~ao espec\'ifica~\cite{abnTeX2009}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Abreviaturas e Acrônimos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Abreviaturas} 
+O comando \verb|\abrevi{abreviatura}{extenso}| da classe \utfprtex permite a definição de abreviaturas. Por exemplo, o significado das abreviaturas para \abrevi{coef.}{Coeficiente},  \abrevi{V. Exa.}{Vossa Excelência}, \abrevi{hab.}{Habitantes} aparecem automaticamente na lista de abreviaturas.
+
+\index{Acrônimos}
+O comando \verb|\abrevi{acrônimo}{extenso}| da classe \utfprtex permite a definição de abreviaturas. Por exemplo, o significado das abreviaturas para \acron{CAE}{Computer Aided Engineering},  \acron{FORTRAN}{Formula Translation}, \acron{IPPUC}{Instituto de Pesquisa e Planejamento Urbano de Curitiba} aparecem automaticamente na lista de acrônimos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Citações}
+\label{sec:citacao}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\index{citações!diretas}
+Utilize o ambiente \texttt{citacao} para incluir citações diretas com mais de três linhas:
+
+\begin{citacao}
+As citações diretas, no texto, com mais de três linhas, devem ser
+destacadas com recuo de 4 cm da margem esquerda, com letra menor que a do texto
+utilizado e sem as aspas. No caso de documentos datilografados, deve-se
+observar apenas o recuo \cite[5.3]{NBR10520:2002}.
+\end{citacao}
+
+Use o ambiente assim:
+
+\begin{lstlisting}[frame=none,fontadjust=true]
+\begin{citacao}
+As citações diretas, no texto, com mais de três linhas [...] deve-se observar
+apenas o recuo \cite[5.3]{NBR10520:2002}.
+\end{citacao}
+\end{lstlisting}
+
+O ambiente \texttt{citacao} pode receber como parâmetro opcional um nome de
+idioma previamente carregado nas opções da classe. Nesse
+caso, o texto da citação£o é automaticamente escrito em itálico e a hifenização é
+ajustada para o idioma selecionado na opcode do ambiente. Por exemplo:
+
+\begin{lstlisting}[frame=nome]
+\begin{citacao}[english]
+Text in English language in italic with correct hyphenation.
+\end{citacao}
+\end{lstlisting}
+
+Tem como resultado:
+
+\begin{citacao}[english]
+Text in English language in italic with correct hyphenation.
+\end{citacao}
+
+\index{citações!simples}
+Citações simples, com ate três linhas, devem ser incluídas com aspas. Observe que em \LaTeX as aspas iniciais sao diferentes das
+finais: ``Amor e fogo que arde sem se ver''.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notas de Rodapé}
+\label{sec:notasrodape}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As notas de rodapé são detalhadas pela NBR 14724:2011 na seção 5.2.1\footnote{As
+notas devem ser digitadas ou datilografadas dentro das margens, ficando
+separadas do texto por um espaço simples de entre as linhas e por filete de 5
+cm, a partir da margem esquerda. Devem ser alinhadas, a partir da segunda linha
+da mesma nota, abaixo da primeira letra da primeira palavra, de forma a destacar
+o expoente, sem espaço entre elas e com fonte menor
+\citeonline[5.2.1]{NBR14724:2011}.}\footnote{Caso uma serie de notas sejam
+criadas sequencialmente, o \abnTeX\ instrui o \LaTeX\ para que uma virgula seja
+colocada após cada número do expoente que indica a nota de rodapé no corpo do
+texto.}\footnote{Verifique se os números do expoente possuem uma virgula para
+dividi-los no corpo do texto.}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Teoremas, Provas e Lemas}
+\label{sec:teoremas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Os documentos matemáticos incluem elementos que requerem formatação e numeração especiais, tais como teoremas, definições, proposições, observações, corolários, lemas e assim por diante. Este artigo explica como definir esses ambientes no LaTeX.
+
+Os ambientes numerados em LaTeX podem ser definidos por meio do comando \verb|\newtheorem|. 
+
+Existem dez novos ambientes definidos no preâmbulo.
+\begin{lstlisting}[frame=nome]
+\newtheorem{problema}{Problema}
+\newtheorem{definicao}{Definição}
+\newtheorem{proposicao}{Proposição}
+\newtheorem{teorema}{Teorema}[chapter]
+\newtheorem{lema}{Lema}
+\newtheorem{corolario}{Corolário}
+\newtheorem{exemplo}{Exemplo}
+\newtheorem*{observacao}{Observação}
+\newenvironment{prova}
+{\noindent {\textit{Demonstração}.}} {{\par\hfill$\Box$ \\}}
+\end{lstlisting}
+
+Tal como acontece com muitos outros elementos numerados no LaTeX, o comando \verb|\label| pode ser usado para referenciar o teorema-como ambientes dentro do documento.
+
+
+\begin{teorema}[Teorema de Bolzano ou Teorema do Anulamento]
+Seja $f$ uma função contínua no intervalo $[a,b]$ de modo que $f(a)$ e $f(b)$ tenham sinais opostos. Então existe $c \in (a,b)$ tal que $f(c)=0$.
+\end{teorema}
+
+
+\begin{teorema}[Teorema de Pitagoras]
+\label{teo:pitagoras}
+Se o triângulo retângulo de catetos $AB$ e $BC$ tem  hipotenusa $AB$, então
+\[ BC^2 + AC^2 = AB^2 \]
+\end{teorema}
+
+\begin{prova}
+Considere o triângulo $ABC$. Tomando como centro o ponto $B$ e raio igual a hipotenusa $AB$, traçamos uma circunferência.
+\begin{figure}[!htb]
+\centering
+\caption{Triângulo para prova do teorema.\label{fig:pitagoras}}
+\includegraphics[height=7cm]{./figuras/pitagoras.png} \\
+\fonte{Site o Baricentro da Mente}
+\end{figure}
+
+A seguir prolongamos os catetos $AC$ e $BC$, interceptando a circunferência nos pontos $L$, $D$ e $E$ respectivamente.
+
+Pelo teorema das cordas, temos:
+\begin{equation}\label{eq:pit1}
+AC \cdot CL = DC \cdot CE
+\end{equation}
+Note que
+\begin{equation}\label{eq:pit2}
+DC = DB + BC = AB + BC
+\end{equation}
+e
+\begin{equation}\label{eq:pit3}
+CL = AC
+\end{equation}
+e
+\begin{equation}\label{eq:pit4}
+CE = BE - BC = AB - BC
+\end{equation}
+
+Substituindo \ref{eq:pit2}, \ref{eq:pit3} e \ref{eq:pit4} em \ref{eq:pit1}, segue que:
+\begin{equation} \label{eq:pit5}
+AC^2 = (AB + BC) \cdot (AB - BC) = AB^2 - BC^2
+\end{equation}
+
+Logo:
+\begin{equation}\label{eq:pit6}
+AB^2 = AC^2 + BC^2
+\end{equation}
+\end{prova}
+
+Uma consequência do teorema \ref {teo:pitagoras} é a afirmação no próxima corolário.
+\begin{corolario}
+Não existe triângulo retângulo com os lados medindo 3cm, 4cm, e 6cm.
+\end{corolario}
+
+
+\begin{lema}
+Dado dois segmentos de linha cujos comprimentos são $a$ e $b$ respectivamente, existe um
+número real $r$ tal que $b=ra$.
+\end{lema}
+
+
+\begin{prova}
+Para provar por contradição presuma que a afirmação é falsa, proceda a partir daí e em algum ponto você chegará a uma contradição.
+\end{prova}
+
+Também são possíveis ambientes de teorema não numerados.
+
+\begin{observacao}
+Esta afirmação é verdade, eu acho.
+\end{observacao}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algoritmos e Listings}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A lista de algoritmos é gerada automaticamente utilizando-se o comando \verb|\listofalgorithms| no final da parte pré-textual do documento, conforme normas da ABNT.
+
+A seguir são apresentados exemplos básicos de utilização de dois pacotes pra digitação de algoritmos pré-carregados com a classe.
+
+%----------------------------------
+\subsection{Pacote "Algorithmic" - Básico}
+%----------------------------------
+
+O pacote \textit{Algorithimic} permite a digitação de pseudocódigo como pode ser observado nos algoritmos \ref{alg1} e \ref{alg:calcqij}.
+
+
+\begin{algorithm}[!htb]
+\caption{Calculo de $y = x^n$}
+\label{alg1}
+\hrule\vspace{0.2\onelineskip}
+\begin{algorithmic}
+\REQUIRE $n \geq 0 \vee x \neq 0$
+\ENSURE $y = x^n$
+\STATE $y \leftarrow 1$
+\IF{$n < 0$}
+\STATE $X \leftarrow 1 / x$
+\STATE $N \leftarrow -n$
+\ELSE
+\STATE $X \leftarrow x$
+\STATE $N \leftarrow n$
+\ENDIF
+\WHILE{$N \neq 0$}
+\IF{$N$ is even}
+\STATE $X \leftarrow X \times X$
+\STATE $N \leftarrow N / 2$
+\ELSE[$N$ is odd]
+\STATE $y \leftarrow y \times X$
+\STATE $N \leftarrow N - 1$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\hrule\vspace{0.5\onelineskip}
+\end{algorithm}
+
+
+\begin{algorithm}[!htb]
+   \caption{Calculate $Q_{ij}$}\label{alg:calcqij}
+   \hrule\vspace{0.2\onelineskip}
+    \begin{algorithmic}[1]
+      \REQUIRE $\tau>0,A\ne\emptyset,N=|A|$
+      \ENSURE $Q_{ij}(\Delta t)\sum_{t\in A} e^{-\frac{|t-\delta t|}{\tau}}, \forall t\in A$
+      \STATE $\mathbf{A}\Leftarrow\mathrm{sort}(A)\;\{O(N\log N)\}$
+      \STATE $Q^-(1)\Leftarrow 1$
+      \STATE $Q^+(N)\Leftarrow 0$
+      \FOR{$k=1$ \TO $N-1$}
+      \STATE  $ed(k)\Leftarrow e^{-\frac{\mathbf{A}(k+1)-\mathbf{A}(k)}{\tau}}$
+      \ENDFOR
+      \FOR{$k=1$ \TO $N-1$}
+      \STATE $Q^-(k+1)\Leftarrow 1+Q^-(k)\cdot ed(k)$
+      \STATE $Q^+(N-k)\Leftarrow (Q^+(N-k+1)+1)\cdot ed(N-k)$
+      \ENDFOR
+      \FOR{$k=1$ \TO $N$}
+      \STATE $Q_{ij}(A(k))\Leftarrow Q^+(k)+Q^-(k)$
+      \ENDFOR
+    \end{algorithmic}
+    \hrule\vspace{0.2\onelineskip}
+\end{algorithm}
+
+%----------------------------------
+\subsection{Pacote "Listings" - Básico}
+%----------------------------------
+
+O pacote \textit{Listings} permite a digitação de códigos em varias linguagens como pode ser observado nos algoritmos \autoref{alg:codigopascal}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{lstlisting}[float=!htb,caption=Exemplo de Código em Pascal,label=alg:codigopascal,language=pascal]
+Program Lesson1_Program3;
+Var
+    Num1, Num2, Sum : Integer;
+
+Begin {no semicolon}
+	Write('Input number 1:');
+	Readln(Num1);
+	Writeln('Input number 2:');
+	Readln(Num2);
+	Sum := Num1 + Num2; {addition}
+	Writeln(Sum);
+	Readln;
+End.
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting}[float=!htb,caption={Exemplo de Código em C++},label=alg:codigoc,language=C++]
+  #include<stdio.h>
+  #include<iostream>
+    // A comment
+    int main(void)
+    {
+    printf("Hello World\n");
+    return 0;
+    }
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting}[float=!htb,caption=Exemplo de Código em Python,label=alg:codigopython,language=Python]
+import numpy as np
+
+def incmatrix(genl1,genl2):
+    m = len(genl1)
+    n = len(genl2)
+    M = None #to become the incidence matrix
+    VT = np.zeros((n*m,1), int)  #dummy variable
+
+    #compute the bitwise xor matrix
+    M1 = bitxormatrix(genl1)
+    M2 = np.triu(bitxormatrix(genl2),1)
+
+    for i in range(m-1):
+        for j in range(i+1, m):
+            [r,c] = np.where(M2 == M1[i,j])
+            for k in range(len(r)):
+                VT[(i)*n + r[k]] = 1;
+                VT[(i)*n + c[k]] = 1;
+                VT[(j)*n + r[k]] = 1;
+                VT[(j)*n + c[k]] = 1;
+
+                if M is None:
+                    M = np.copy(VT)
+                else:
+                    M = np.concatenate((M, VT), 1)
+
+                VT = np.zeros((n*m,1), int)
+
+    return M
+\end{lstlisting}
+
+
+\begin{lstlisting}[float=!htb,caption=Exemplo de Código em XML,label=alg:codigoxml,language=XML,basicstyle=\ttfamily\footnotesize]
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="points">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="point">
+          <xs:complexType>
+            <xs:attribute name="x" type="xs:unsignedShort" use="required" />
+            <xs:attribute name="y" type="xs:unsignedShort" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+\end{lstlisting}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstinputlisting[float=!htb,caption={Exemplo de Código Matlab},label=alg:codigomatlab,language=Matlab]{./Capitulo2/matlab.m}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Secundária - Seção}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Subdivisão do texto a partir de uma seção primária.
+
+O indicativo de uma seção secundária é constituído pelo número da seção primária a que pertence, seguido do número que lhe for atribuído na sequência do assunto e separado por ponto. Repete-se o mesmo processo em relação às demais seções.
+
+%----------------------------------
+\subsection{Terciária - Subseção}
+%----------------------------------
+
+Subdivisão do texto a partir de uma seção secundária.
+
+%----------------------------------
+\subsubsection{Quaternária - Subsubseção}
+%----------------------------------
+
+Subdivisão do texto a partir de uma seção terciária.
+
+%----------------------------------
+\subsubsubsection{Quinária - Subsubeção}
+%----------------------------------
+
+Subdivisão do texto a partir de uma seção quaternária.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Glossário}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Glossário é um tipo de dicionário específico para palavras e expressões pouco conhecidas, seja por serem de natureza técnica, regional ou de outro idioma.
+
+Por norma, o glossário forma o capítulo inicial ou final de determinada obra literária, listando em ordem alfabética as acepções corretas dos termos mais \glspl{peculiar} presentes ao longo texto.
+
+As palavras que aparecem no glossário são geralmente pouco conhecidas, principalmente por representarem conceitos técnicos e complexos, de conhecimento majoritário dos indivíduos familiarizados com determinada ciência ou área.
+
+Nos glossários também podem aparecer os significados contemporâneos de expressões ou palavras extintas, mas que serviam para definir corretamente determinados conceitos ou situações em tempos antigos.
+
+Nas obras literárias, os glossários também podem servir para explicar alguns neologismos criados pelo autor, e que não poderiam ter sido esclarecidos durante o texto, pois faria com que o leitor perdesse o ritmo da leitura.
+
+Em alguns trabalhos acadêmicos ou científicos, os glossários são considerados essenciais para a fácil identificação de termos e conceitos que ajudam ao leitor a compreender o direcionamento da interpretação dada pelo autor do estudo ao seu trabalho.
+
+Existem diversos tipos diferentes de glossário, por exemplo: um glossário bilingue, quando as palavras são explicadas e traduzidas para outro idioma; glossário de assuntos específicos como finanças e administração, que explicam termos técnicos, utilizados por profissionais da área ou pessoas que têm interesse em descobrir os seus significados, além de termos científicos.
+
+Para utilizar o glossário no documento acrescente os termos desejados no arquivo \texttt{entradas\_glossário.tex} usando o seguinte comando:
+\begin{lstlisting}[frame=nome]
+\newglossaryentry{<label>}
+{
+name={<name>},
+plural={<names>},
+parent= {<pai>},
+sort={<sort>},
+description={<description>},
+<other options>
+}
+\end{lstlisting}
+
+Depois de ter definido as suas entradas, como descrito acima, você pode referenciá-las em seu documento. Há uma série de comandos para fazer isso, mas o mais comum é:
+\begin{lstlisting}[frame=shadowbox,rulesepcolor=\color{blue}]
+\gls{<label>}
+\end{lstlisting}
+Onde <label> é o rótulo que você atribuiu à entrada quando você a definiu.
+
+O glossário é opcional e pode ser inserido após as referencias utilizando o comando \verb|\incluirglossario|.
+
+Para mais comandos e opções consulte o manual do pacote \texttt{glossaries}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Índice Remissivo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Um índice remissivo lista os termos e tópicos que são abordados num documento juntamente com paginas em que aparecem. Estes itens podem incluir palavras, frases ou símbolos isolados e referências a outras entradas.
+
+Para criar um índice remissivo marque as entradas do índice remissivo fornecendo o nome da entrada principal através do comando \verb|\index{<entrada>}| a longo do documento
+
+O índice remissivo é opcional e deve ser inserindo, no final do documento, através do comando \verb|\indiceremissivo|. Para definir se o índice será em uma ou duas colunas utilizar os comandos \verb|\onecolindex| ou \verb|\twocolindex| antes do comando de criação do índice remissivo.
+
+Para mais comandos e opções consulte o manual do pacote \texttt{index}.
+
+
+

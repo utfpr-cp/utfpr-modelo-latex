@@ -1,0 +1,16 @@
+item_0  ""
+item_1  ""
+item_2  ""
+item_01 ""
+item_12 ""
+item_x1 ""
+item_x2 ""
+delim_0 "\\TSStextpagesep{}"
+preamble ""
+postamble ""
+group_skip ""
+encap_suffix "}\\\\\n"
+headings_flag 0
+line_max 132
+indent_space ""
+indent_length 0

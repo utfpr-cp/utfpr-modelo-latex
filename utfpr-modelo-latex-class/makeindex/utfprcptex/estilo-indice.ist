@@ -1,0 +1,9 @@
+%%% Coloca cada letra entre grupos no início da linha
+heading_prefix "{\\bfseries " % Insert in front of letter
+heading_suffix "}\\nopagebreak\n" % Append after letter
+headings_flag 1 % Turn on headings (uppercase)
+%%% Traduz ‘‘Symbols’’ e ‘‘Numbers’’ para Portugues.
+symhead_positive "S\\’{\\i}mbolos"
+symhead_negative "s\\’{\\i}mbolos"
+numhead_positive "N\\’umeros"
+numhead_negative "n\\’umeros"
