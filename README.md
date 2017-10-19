@@ -16,6 +16,7 @@ A pasta **utfpr-modelo-latex-class** possui a classe propriamente dita, para rea
 2. Atualizar a base de dados LaTeX;
 
 A pasta **utfpr-modelo-latex-dissertacao** possui um modelo de utilização da classe em questão em uma dissertação de conclusão de curso.
+
 A pasta **utfpr-modelo-latex-trabalho-academico** possui um modelo de utilização da classe em questão em um trabalho acadêmico.
 
 A sequência de compilação correta é:
