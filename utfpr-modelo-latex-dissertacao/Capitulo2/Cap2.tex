@@ -13,10 +13,11 @@ A seguir ilustra-se a forma de incluir figuras, tabelas, equa\c{c}\~oes, siglas 
 \index{Errata}
 
 A errata é um documento simples, onde devem ser identificados os erros que se encontram no trabalho. Neste documento, deve-se apontar o erro e indicar qual é a forma correta que o substitui.
+
 \begin{figure}[!htb]
 \centering
 \caption{Definição de Errata e Exemplo.\label{fig:errata1}}
-	\includegraphics[width=\textwidth]{./figuras/errata1.jpg} \\
+	\includegraphics[width=\textwidth]{./figuras/errata1.jpg}\\
 \fonte{http://www.normasabnt.net/errata-abnt/}
 \end{figure}
 
@@ -53,11 +54,11 @@ Referencia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \index{Ilustrações}
 
-Elemento opcional. Elaborada de acordo com a ordem apresentada no texto, com cada item designado por seu nome específico, travessão, título e respectivo número da folha ou página. É inserida no do documento utilizando-se o comando \verb|\listadeilustracoes|. 
+Elemento opcional. Elaborada de acordo com a ordem apresentada no texto, com cada item designado por seu nome específico, travessão, título e respectivo número da folha ou página. É inserida no do documento utilizando-se o comando \verb|\listadeilustracoes|.
 
 Quando inserida a lista de ilustrações as demais listas referentes aos itens agrupados na mesmas devem ser removidas.
 
-Quando necessário, recomenda-se a elaboração de lista própria para cada tipo de ilustração (desenhos, esquemas, fluxogramas, fotografias, gráficos, mapas, organogramas, plantas, quadros, retratos e outras). 
+Quando necessário, recomenda-se a elaboração de lista própria para cada tipo de ilustração (desenhos, esquemas, fluxogramas, fotografias, gráficos, mapas, organogramas, plantas, quadros, retratos e outras).
 
 Foram criados ambientes e listas para alguns tipos de ilustração específicos (fluxogramas, fotografias, gráficos, quadros) que serão apresentados nas próximas seções.
 
@@ -83,21 +84,22 @@ Na figura~\ref{fig:gdimotes} \'e apresentado um exemplo de gr\'aficos lado a lad
 
 \begin{figure}[!htb]
 \centering
-%\begin{measuredfigure}
+\parbox[b]{0.9\textwidth}{ 
 \caption{Série MICA2 dos sensores Motes.\label{fig:gdimotes}}
 	\includegraphics[height=5cm]{./figuras/mica2back.jpg} \quad
-	\includegraphics[height=5cm]{./figuras/mica2dotback.jpg}\newline
+	\includegraphics[height=5cm]{./figuras/mica2dotback.jpg}%\newline
 \fonte{De algun lugar}
-%\end{measuredfigure}
+}
 \end{figure}
 
 Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a lado com legendas distintas.
 
 \begin{figure}[!htb]
- % \captionsetup{width=\textwidth}
+\centering
+  %\captionsetup{width=0.8\textwidth}
+  \parbox[b]{0.7\linewidth}{
   \caption{Mapas de Memória do AVR \cite{ATmega8515:datasheet}.}
   \label{fig:avrmem-map}
-  \begin{center}
   \mbox{%
     \subfloat[b][Memória de Programa]{
     \includegraphics[height=10cm]{./figuras/avrprg.png}
@@ -109,8 +111,18 @@ Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a l
     }
        }
   \fonte{De algun lugar}
-  \end{center}
+  }
 \end{figure}
+
+\begin{figure}[!htb]
+\centering
+\parbox[b]{8cm}{%
+  \caption{Tentativa de Alinhas Legenda, Figura e Fonte}
+  \rule{8cm}{4.5cm}
+  \fonte{caixa preta}
+  }
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Gráficos}
@@ -119,12 +131,13 @@ Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a l
 \index{graficos} No gráfico~\ref{grf:dist-pop-bra} \'e apresentado um exemplo de um gráfico, inserida utilizando-se o ambiente \texttt{grafico}. Esta gráfico aparece automaticamente na lista de gráficos através do comando \verb|\listadegraficos|. Para uso avan\c{c}ado de gráficos no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
 
 \begin{grafico}[!htb]
- % \captionsetup{width=\textwidth}
-  \caption{Distribuição residencial da população brasileira em um exemplo de gráfico em linhas.\label{grf:dist-pop-bra}}
-  \begin{center}
+%   \captionsetup{width=0.7\textwidth}
+    \centering
+\parbox[b]{0.7\textwidth}{%
+    \caption{Distribuição residencial da população brasileira em um exemplo de gráfico em linhas.\label{grf:dist-pop-bra}}
     \includegraphics[width=0.7\textwidth]{./figuras/distribuicao-da-populacao-brasileira.jpg}
-  \fonte{Site da Internet - http://mundoeducacao.bol.uol.com.br/geografia/tipos-graficos.htm}
-  \end{center}
+    \fonte{Site da Internet - http://mundoeducacao.bol.uol.com.br/geografia/tipos-graficos.htm}
+    }
 \end{grafico}
 
 
@@ -135,13 +148,13 @@ Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a l
 \index{fotografias} No gráfico~\ref{ftr:spring_dream} \'e apresentado um exemplo de um gráfico, , inserida utilizando-se o ambiente \texttt{foto}. Esta gráfico aparece automaticamente na lista de fotografias através do comando \verb|\listadefotos|. Para uso avan\c{c}ado de gráficos no \LaTeX, recomenda-se a consulta de literatura especializada~\cite{Goossens2007}.
 
 \begin{foto}[!htb]
+\centering
  % \captionsetup{width=\textwidth}
-  \caption{Sonho de Primavera, Vale do Ant\'ilope, Reserva da Papoula, California.}
-  \label{ftr:spring_dream}
-  \begin{center}
-    \includegraphics[width=0.7\textwidth]{./figuras/spring.jpg}
-  \fonte{Site da Internet - http://webshots.com - Autor: Kevin McNeal}
-  \end{center}
+\parbox[b]{0.7\textwidth}{%
+      \caption{Sonho de Primavera, Vale do Ant\'ilope, Reserva da Papoula, California.\label{ftr:spring_dream}}
+      \includegraphics[width=0.7\textwidth]{./figuras/spring.jpg}
+      \fonte{Site da Internet - http://webshots.com - Autor: Kevin McNeal}
+    }
 \end{foto}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,12 +165,13 @@ Na figura~\ref{fig:avrmem-map} \'e apresentado um exemplo de gr\'aficos lado a l
 
 Caros pais, avós, amigos de trabalho e outras pessoas que não mexem em computador. Nós não sabemos magicamente fazer tudo em todos os programas. Quando nós ajudamos vocês, estamos normalmente fazendo isso:
 \begin{fluxo}[!htb]
-  \caption{Fluxograma para solucionar problemas no PC.}
-  \label{flx:prob_pc}
-  \begin{center}
+    \centering
+\parbox[b]{0.7\textwidth}{
+    \caption{Fluxograma para solucionar problemas no PC.}
+    \label{flx:prob_pc}
     \includegraphics[width=0.7\textwidth]{./figuras/fluxograma_cut.jpg}
-  \fonte{Site da Internet - https://dennytorres.wordpress.com/tag/fluxograma/}
-  \end{center}
+    \fonte{Site da Internet - https://dennytorres.wordpress.com/tag/fluxograma/}
+    }
 \end{fluxo}
 
 Por favor imprima e prenda esse fluxograma perto de sua tela. Parabéns, você é o expert do computador do pedaço.
@@ -182,8 +196,9 @@ Basicamente, a diferença entre ambos está relacionada a formatação. A tabela apr
 \index{quadros} São apresentados os exemplos dos quadros~\ref{quad:descricao} e \ref{quad:modelo}, utiliza-se o ambiente \texttt{quadro}, que aparecem automaticamente na lista de quadros através do comando \verb|\listadequadros|. Informa\c{c}\~oes sobre a constru\c{c}\~ao de quadros no \LaTeX\ podem ser encontradas na literatura especializada~\cite{Lamport1986,Buerger1989,Kopka2003,Mittelbach2004}.
 
 \begin{quadro}[!htb]
-\caption{Áreas de Desenvolvimento de Competências}\label{quad:descricao}
 \centering
+\parbox[b]{0.9\textwidth}{
+\caption{Áreas de Desenvolvimento de Competências}\label{quad:descricao}
 	\begin{tabular}{|l|p{0.5\linewidth}|}
 		\hline
 		 \textbf{Áreas de Desenvolvimento} & \textbf{Descrição} \\
@@ -203,13 +218,15 @@ responsabilizar-se pelos seus atos. \\
 		\hline
 	\end{tabular}
     \fonte{Zarifian (1999) apud Fleury e Fleury (2004).}
+    }
 \end{quadro}
 
 
 
 \begin{quadro}[!htb]
-\caption{Modelo de Quadro}\label{quad:modelo}
 \centering
+\parbox[b]{0.7\textwidth}{
+\caption{Modelo de Quadro}\label{quad:modelo}
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		 \textbf{ÁREAS} & \textbf{UNESP} & \textbf{UNICAMP} & \textbf{USP} & \textbf{TOTAL}\\
@@ -226,6 +243,7 @@ responsabilizar-se pelos seus atos. \\
         \hline
 	\end{tabular}
     \fonte{Fonte Modelo.}
+    }
 \end{quadro}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -255,10 +273,11 @@ Também são apresentados os exemplos das tabelas~\ref{tab:correlacao} e \ref{tab:
 
 
 \begin{table}[!htb]
+\begin{center}
+\parbox[b]{0.9\textwidth}{
  \caption{Exemplo de cronograma usando \textit{bullet}}
  \label{tab:cronograma}
- \begin{center}
-  \begin{tabular}{l||c|c|c|c|c|c|c|c}
+   \begin{tabular}{l||c|c|c|c|c|c|c|c}
     \hline
     \multicolumn{9}{c}{2003} \\ \hline \hline
     \multicolumn{1}{c||}{Fase} & Março     & Abril     & Maio     & Junho   & Julho & Agosto & Setembro & Outubro\\ \hline
@@ -272,6 +291,7 @@ Também são apresentados os exemplos das tabelas~\ref{tab:correlacao} e \ref{tab:
   \end{tabular}
  \vspace{8pt} %%%% Deve ser acrescentado para que haja espaço entre o final da tabela e a fonte.
   \fonte{Fonte Modelo.}
+ }
  \end{center}
  \end{table}
 
@@ -341,16 +361,16 @@ l+m+n+o+p+q+r+s+t+w+x+y+z
 \section{Siglas e S\'imbolos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \index{Siglas} \index{Símbolos}
-O pacote \textsc{abn}\TeX\ permite ainda a defini\c{c}\~ao de siglas e s\'imbolos com indexa\c{c}\~ao autom\'atica atrav\'es dos comandos \verb|\sigla{sigla}{significado}| e \verb|\simbolo{símbolo}{significado}|. Por exemplo, o significado das siglas \sigla{PPGEE}{Programa de Programa de Pós-Graduação em Engenharia Elétrica}, \sigla{COELT}{Coordenação de Eletrotécnica} e \sigla{UTFPR}{Universidade Tecnológica Federal do Paraná} aparecem automaticamente na lista de siglas, bem como o significado dos s\'imbolos \simbolo{$\lambda$}{comprimento de onda}, \simbolo{$v$}{velocidade} e \simbolo{$f$}{frequ\^encia} aparecem automaticamente na lista de s\'imbolos. Mais detalhes sobre o uso destes e outros comandos do \textsc{abn}\TeX\ s\~ao encontrados na sua documenta\c{c}\~ao espec\'ifica~\cite{abnTeX2009}.
+O pacote \textsc{abn}\TeX\ permite ainda a defini\c{c}\~ao de siglas e s\'imbolos com indexa\c{c}\~ao autom\'atica atrav\'es dos comandos \verb|\sigla{sigla}{significado}| e \verb|\simbolo{símbolo}{significado}|. Por exemplo, o significado das siglas \sigla{PPGEE}{Programa de Pós-Graduação em Engenharia Elétrica}, \sigla{COELT}{Coordenação de Eletrotécnica} e \sigla{UTFPR}{Universidade Tecnológica Federal do Paraná} aparecem automaticamente na lista de siglas, bem como o significado dos s\'imbolos \simbolo{$\lambda$}{comprimento de onda}, \simbolo{$v$}{velocidade} e \simbolo{$f$}{frequ\^encia} aparecem automaticamente na lista de s\'imbolos. Mais detalhes sobre o uso destes e outros comandos do \textsc{abn}\TeX\ s\~ao encontrados na sua documenta\c{c}\~ao espec\'ifica~\cite{abnTeX2009}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Abreviaturas e Acrônimos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\index{Abreviaturas} 
-O comando \verb|\abrevi{abreviatura}{extenso}| da classe \utfprtex permite a definição de abreviaturas. Por exemplo, o significado das abreviaturas para \abrevi{coef.}{Coeficiente},  \abrevi{V. Exa.}{Vossa Excelência}, \abrevi{hab.}{Habitantes} aparecem automaticamente na lista de abreviaturas.
+\index{Abreviaturas}
+O comando \verb|\abrevi{abreviatura}{extenso}| da classe \utfprtex\ permite a definição de abreviaturas. Por exemplo, o significado das abreviaturas para \abrevi{coef.}{Coeficiente},  \abrevi{V. Exa.}{Vossa Excelência}, \abrevi{hab.}{Habitantes} aparecem automaticamente na lista de abreviaturas.
 
 \index{Acrônimos}
-O comando \verb|\abrevi{acrônimo}{extenso}| da classe \utfprtex permite a definição de abreviaturas. Por exemplo, o significado das abreviaturas para \acron{CAE}{Computer Aided Engineering},  \acron{FORTRAN}{Formula Translation}, \acron{IPPUC}{Instituto de Pesquisa e Planejamento Urbano de Curitiba} aparecem automaticamente na lista de acrônimos.
+O comando \verb|\acron{acrônimo}{extenso}| da classe \utfprtex\ permite a definição de acrônimos. Por exemplo, o significado dos acrônimos para \acron{CAE}{Computer Aided Engineering},  \acron{FORTRAN}{Formula Translation}, \acron{IPPUC}{Instituto de Pesquisa e Planejamento Urbano de Curitiba} aparecem automaticamente na lista de acrônimos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Citações}
@@ -402,7 +422,7 @@ finais: ``Amor e fogo que arde sem se ver''.
 \label{sec:notasrodape}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As notas de rodapé são detalhadas pela NBR 14724:2011 na seção 5.2.1\footnote{As
+As notas de rodapé são detalhadas pela NBR 14724:2011 na seção 5.2.1\footnotemark\footnotetext{As
 notas devem ser digitadas ou datilografadas dentro das margens, ficando
 separadas do texto por um espaço simples de entre as linhas e por filete de 5
 cm, a partir da margem esquerda. Devem ser alinhadas, a partir da segunda linha
@@ -420,7 +440,7 @@ dividi-los no corpo do texto.}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Os documentos matemáticos incluem elementos que requerem formatação e numeração especiais, tais como teoremas, definições, proposições, observações, corolários, lemas e assim por diante. Este artigo explica como definir esses ambientes no LaTeX.
 
-Os ambientes numerados em LaTeX podem ser definidos por meio do comando \verb|\newtheorem|. 
+Os ambientes numerados em LaTeX podem ser definidos por meio do comando \verb|\newtheorem|.
 
 Existem dez novos ambientes definidos no preâmbulo.
 \begin{lstlisting}[frame=nome]

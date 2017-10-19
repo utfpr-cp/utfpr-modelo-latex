@@ -20,11 +20,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Esta é uma classe Latex2e:
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\immediate\write18{makeindex -s utfpr-siglas.ist -t \jobname.nll -o \jobname.nls \jobname.nlo} % Compilação da lista de siglas
+\immediate\write18{makeindex abrevia.idx -s tabela-abreviaturas.ist -o abrevia.ind}\relax % Compilação da lista de abreviaturas
+\immediate\write18{makeindex acron.idx -s tabela-abreviaturas.ist -o acron.ind}\relax       % Compilação da lista de acrônimos
+\immediate\write18{makeindex -s estilo-glossario.ist -t \jobname.glg -o \jobname.gls \jobname.glo}\relax % Compilação do glossário
+\immediate\write18{makeindex -s estilo-indice.ist -t \jobname.idl -o \jobname.ind \jobname.idx}\relax % Compilação do índice remissivo
+
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{utfprcptex2}[2017/02/20 Classe de Normas para Trabalhos da UTFPR]
+\RequirePackage{substr}%% Controle de substrings em strings
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{abntex2}}
-\ProcessOptions
 \ProcessOptions\relax
 \LoadClass[
 %cleardoublepage=plain,
@@ -40,25 +49,34 @@ section=TITLE,
 %-------------------------------------------------------------
 %% Desabilita a emulação de alguns pacotes pela classe memoir
 %% Para evitar incompatibilidade
-\DisemulatePackage{index}
+%\DisemulatePackage{index}
 \DisemulatePackage{setspace}
-\DisemulatePackage{tocstyle}
+%\DisemulatePackage{tocstyle}
 %-------------------------------------------------------------
 % Pacotes carregados para implementar a classe UTFPR
 %-------------------------------------------------------------
 \RequirePackage[T1]{fontenc}
 \RequirePackage[latin1]{inputenc} % pacote para acentuacao direta
+\RequirePackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\RequirePackage[alf,bibjustif,recuo=0cm]{abntex2cite}	% Citações padrão ABNT
+\RequirePackage{lastpage}
+%---------------------------------------------------
+\RequirePackage{listings} % O pacote para adição de código fonte em múltiplas linguagens
+\RequirePackage{algorithmic} %% Pacote para algoritmos em pseudocódigo
+%---------------------------------------------------
 \RequirePackage[acronym, nosuper, nowarn, sanitize={description=false}, style=index]{glossaries}%% Glossários e listas de acrônimos
+\RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 \RequirePackage{array}
-\RequirePackage{index}
+%\RequirePackage{index}
 \RequirePackage{rotating,newfloat}
 \RequirePackage{multirow}
 \RequirePackage{colortbl}
 \RequirePackage{hhline}
 \RequirePackage{ifthen}
-\RequirePackage{lastpage}
+\RequirePackage{sistyle}%% Unidades, nÃºmeros e Ã¢ngulos no SI
 \RequirePackage{perpage}
 \RequirePackage{xparse}
+\let\footruleskip\undefined
 \RequirePackage{fancyhdr}%
 %%%%% Ajuste das Margens
 \RequirePackage[paper=A4,pagesize]{typearea}
@@ -67,8 +85,9 @@ section=TITLE,
 %            showframe
             ]{geometry}
 \RequirePackage{xcolor}
+\RequirePackage{hyphenat}%% HifenizaÃ§Ã£o de palavras
 \RequirePackage{longtable}
-\RequirePackage{morewrites}%% Espaços adicionais para comandos \write*
+\RequirePackage{xtab}%% Tabelas em mÃºltiplas pÃ¡ginas
 \RequirePackage{calc} % standard package for length and number easy calculations
 \RequirePackage{etoolbox}
 \RequirePackage{multicol}% multicol - better multicolunms
@@ -78,11 +97,28 @@ section=TITLE,
 \usepackage{remreset}		% reinicia contadores
 \definecolor{meucinza}{rgb}{0.5, 0.5, 0.5} % Definindo novo cinza
 \definecolor{blue}{RGB}{41,5,195} % Alterando o aspecto da cor azul
-% ---
-% Pacotes de citações
-% ---
-\RequirePackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
-\RequirePackage[alf,bibjustif,recuo=0cm]{abntex2cite}	% Citações padrão ABNT
+\RequirePackage{morewrites}%% Espaços adicionais para comandos \write*
+%%%%%%%%%%%%%%%%%%%
+%% Informações do PDF
+%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\def\@cordosvinculos{black}%% Preto
+\hypersetup{
+     	breaklinks=true,%%
+     	colorlinks=true,       		% false: boxed links; true: colored links
+        citecolor=\@cordosvinculos,%%
+        filecolor=\@cordosvinculos,%%
+        linkcolor=\@cordosvinculos,%%
+        urlcolor=\@cordosvinculos,%%
+        bookmarksopen=true,%%
+        bookmarksnumbered=true,%%
+        pdfdisplaydoctitle=true,%%
+        pdfpagelayout=SinglePage%%
+		bookmarksdepth=4
+}
+\makeatother
+
+
 %% Configurações do pacote backref
 \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}%% Comando usado sem a opção hyperpageref do pacote backref
 \renewcommand{\backref}{}%% Texto padrão antes do número das páginas
@@ -106,27 +142,6 @@ section=TITLE,
   \citeoption{abnt-thesis-year=both}
   \citeoption{abnt-url-package=url}
   }
-%%%%%%%%%%%%%%%%%%%
-\PassOptionsToPackage{hyperindex=false}{hyperref}
-%% Informações do PDF
-\makeatletter
-\hypersetup{
-     	%pagebackref=true,
-		%pdftitle={\@title},
-		%pdfauthor={\@author},
-    	%pdfsubject={\imprimirpreambulo},
-%	    pdfcreator={LaTeX with abnTeX2},
-%		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
-		colorlinks=true,       		% false: boxed links; true: colored links
-    	linkcolor=blue,          	% color of internal links
-    	citecolor=blue,        		% color of links to bibliography
-    	filecolor=magenta,      		% color of file links
-		urlcolor=blue,
-		bookmarksdepth=4
-}
-\makeatother
-% ---
-\RequirePackage{nomencl} % Pacote necessário para a lista de siglas.
 
 
 %%%%%%%%%%%%%
@@ -146,15 +161,13 @@ singlelinecheck=false,
 labelfont=bf,
 labelsep=endash,
 textfont=bf,
-skip=1pt
+skip=1pt,
+%figureposition=top
 ]{caption}
 \hangcaption%% Recuo do texto das legendas
 \renewcommand{\captionfont}{\fontsize{10}{12}\selectfont}
 \captionstyle[\raggedright]{\raggedright}
-%---------------------------------------------------
-\RequirePackage{listings} % O pacote para adição de código fonte em múltiplas linguagens
-\RequirePackage{algorithmic} %% Pacote para algoritmos em pseudocódigo
-%---------------------------------------------------
+
 
 \makeatletter	%Para que se entenda o @
 
@@ -163,8 +176,6 @@ skip=1pt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Line spacing stuff
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Since version 0.3 the `setspace' package is used.
 
 % Space scheme in notes (footnotes and margin notes) removed since
 % version 0.3 since setspace do not support it; footnotes are always
@@ -202,6 +213,7 @@ skip=1pt
 
 \newenvironment{espacoduplo}%
   {\begin{spacing}{\taxaespacoduplo}}{\end{spacing}}
+
 
 
 
@@ -415,6 +427,17 @@ skip=1pt
 \newcommand{\UTFPRifnotempty}[2]{\ifthenelse{\not\equal{#1}{}}{#2}{}}
 \newcommand{\UTFPRnotempty}[3]{\ifthenelse{\not\equal{#1}{}}{#2}{#3}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Informações nas propriedades do documento do arquivo pdf
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AtBeginDocument{%% Definições carregadas no início do documento
+  \hypersetup{%% Propriedades do documento do arquivo pdf
+    pdftitle={\UTFPRtitulodata},%% Título
+    pdfauthor={\UTFPRautordata},%% Autor
+    pdfsubject={\UTFPRdocumentodata} de {\UTFPRniveldata},%% Descrição
+    pdfkeywords={\UTFPRkeywordsdata},%% Palavras-chave
+  }
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1430,14 +1453,12 @@ skip=1pt
      {}\ignorespaces
 	  \ifthenelse{\equal{#2}{}}
 		  {\addcontentsline{los}{simbolo}{\hspace{0.24cm}\protect\parbox[t]{\protect\simbmaxwidth}{#1}}}
-		  {\addcontentsline{los}{simbolo}{\hspace{0.24cm}\protect\parbox[t]{\protect\simbmaxwidth}{#1}\protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#2}}}\ignorespaces\hspace{-0.24cm}#1}
+		  {\addcontentsline{los}{simbolo}{\hspace{0.24cm}\protect\parbox[t]{\protect\simbmaxwidth}{#1}\protect\parbox[t]{\protect\textwidth - \protect\simbmaxwidth}{#2}}}\ignorespaces\hspace{-0.05cm}#1}
 
 % como a entrada ser´a impressa
 \newcommand\l@simbolo[2]{
 	\parbox[b]{\textwidth}{#1}
 }
-
-
 
 
 %%%%%%%%% LISTA DE ALGORITMOS %%%%%%%%%%%%
@@ -1554,6 +1575,7 @@ skip=1pt
 \setlength{\nomitemsep}{-\parsep}% Tirando espaço extre entre as entradas na lista.
 }
 
+
 %% Define o comando que monta a lista de siglas
 \newcommand{\listadesiglas}{
 		 % Abrindo arquivo para leitura e verificando se ele existe:
@@ -1570,26 +1592,22 @@ skip=1pt
 	   \addtolength{\siglamaxwidth}{1em}
 % O comando a seguir executa o makeindex automaticamente
 % para ordenar automaticamente a lista de siglas
-\immediate\write18{makeindex \jobname.nlo -s utfpr-siglas.ist -o \jobname.nls}\relax
+%\immediate\write18{makeindex  -s utfpr-siglas.ist -o \jobname.nls \jobname.nlo}
 \printnomenclature[\the\siglamaxwidth]
 \setcounter{abstable}{0}
 \cleardoublepage
 }
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LISTA DE ABREVIATURAS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newboolean{AlphaSort}
 \setboolean{AlphaSort}{true}
 \newcommand{\TSStextpagesep}{ }
 \newcommand{\TSSThePage}[1]{&}
 \providecommand{\listofabreviationsname}{Lista de Abreviaturas}
-\newindex{abrevia}{abreviax}{abrevia}{ddede}%\listofabreviationsname}
-
 \newcommand{\IndexCommand}[3]{\index[#1]{#2@#3|TSSThePage}}%
-
 \newcommand{\abrevi}[2]{\IndexCommand{abrevia}{#1 #2}{#1& #2} #2 (#1)}
 
 \newcommand{\Babrevtable}{\begin{flushleft}\begin{longtable}[l]{lp{0.7\textwidth}l}}
@@ -1598,9 +1616,9 @@ skip=1pt
 \newenvironment{abreviaturas}{\Babrevtable}{\Eabrevtable}
 
 \newcommand{\listadeabreviaturas}{
-\immediate\write18{makeindex \jobname.abreviax -s tabela-abreviaturas.ist -o \jobname.abrevia}\relax
+%\immediate\write18{makeindex \jobname.abreviax -s tabela-abreviaturas.ist -o \jobname.abrevia}\relax
 \pretextualchapter{\listofabreviationsname}
-\IfFileExists{\jobname.abrevia}{
+\IfFileExists{abrevia.ind}{
 \begin{abreviaturas}
 \printindex[abrevia]
 \end{abreviaturas}
@@ -1611,12 +1629,10 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% LISTA DE ACRONIMOS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LISTA DE ACRÔNIMOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \providecommand{\listofacronimosname}{Lista de Acrônimos}
-\newindex{acron}{acronx}{acron}{}
-
 
 \newcommand{\acron}[2]{\IndexCommand{acron}{#1 #2}{#1& #2} #2 (#1)}
 
@@ -1626,9 +1642,9 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 \newenvironment{acronimos}{\Bacrontable}{\Eacrontable}
 
 \newcommand{\listadeacronimos}{
-\immediate\write18{makeindex \jobname.acronx -s tabela-abreviaturas.ist -o \jobname.acron}\relax
+%\immediate\write18{makeindex \jobname.acronx -s tabela-abreviaturas.ist -o \jobname.acron}\relax
 \pretextualchapter{\listofacronimosname}
-\IfFileExists{\jobname.acron}{
+\IfFileExists{acron.ind}{
 \begin{acronimos}
 \printindex[acron]
 \end{acronimos}
@@ -1637,13 +1653,14 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 }{Sua lista de acrônimos s\'o vai aparecer aqui quando for rodar o makeindex.
 Veja a documenta\c c\~ao para mais detalhes.}}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Glossário
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand*{\glossaryname}{GLOSSÁRIO}
 \renewcommand*{\glsseeformat}[3][\seename]{{#1}\space\glsseelist{#2}.}%% Formatação do texto "veja..." no glossário
 \newcommand{\incluirglossario}{%% Definição do comando para inclusão do glossário
-    \immediate\write18{makeindex \jobname.glo -s estilo-glossario.ist -t \jobname.glg -o \jobname.gls}\relax%% Compilação do glossário
+%  \immediate\write18{makeindex \jobname.glo -s estilo-glossario.ist -t \jobname.glg -o \jobname.gls}\relax%% Compilação do glossário
     \setlength{\glstreeindent}{\parindent}%% Recuo dos itens do glossário
     \cleardoublepage%% Página de verso
     \phantomsection%% Atalho do sumário
@@ -1659,7 +1676,11 @@ Veja a documenta\c c\~ao para mais detalhes.}}
 %% ---
 %% compila o indice
 %% ---
-\AtBeginDocument{\makeindex}
+\AtBeginDocument{
+\makeindex
+\makeindex[abrevia]
+\makeindex[acron]
+}
 \addto{\captionsbrazil}{%
    \renewcommand*{\indexname}{Índice Remissivo}
 }
@@ -1687,7 +1708,7 @@ Veja a documenta\c c\~ao para mais detalhes.}}
     }{%%
       \if@restonecol\onecolumn\else\twocolumn\fi
     }
-\immediate\write18{makeindex \jobname.idx -s estilo-indice.ist -o \jobname.ind}\relax
+%     \immediate\write18{makeindex \jobname.idx -s estilo-indice.ist -o \jobname.ind}\relax
 \IfFileExists{\jobname.ind}{
 \cleardoublepage
 \printindex

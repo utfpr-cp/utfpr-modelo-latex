@@ -1,0 +1,164 @@
+%% Exemplo de Utilizacao do Estilo de formatacao utfprcptex  (http://http://code.google.com/p/utfprcptex/)
+%% para elaboração de Trabalhos Academicos
+%% Autores: Rodrigo Rodrigues Sumar (sumar@utfpr.edu.br)
+%%          Bruno Augusto Angélico (bangelico@utfpr.edu.br)
+%% Colaboradores:
+%%
+%%
+\documentclass[twoside,       % para impressão somente na frante. Oposto a twoside
+               openright,     % capítulos começam em pág ímpar (insere página vazia caso preciso)
+               a4paper,       % tamanho do papel.
+               12pt,          % tamanho da fonte
+               english,		  % idioma adicional para hifenização
+%               french,		  % idioma adicional para hifenização
+               spanish,		  % idioma adicional para hifenização
+               brazil		  % o último idioma é o principal do documento
+               ]{utfprcptex2}
+
+\usepackage[latin1]{inputenc} %Pacote para poder utilizar acentos ~ ^ '`
+\usepackage{graphicx}
+%\usepackage{listings}
+%\lstset{breaklines=true,basicstyle=\ttfamily}
+\usepackage{amstext,amsmath}
+% Para fonte Times (Nimbus Roman) descomente linha abaixo
+%\fontetipo{times}
+
+% Para fonte Helvetica (Nimbus Sans) descomente linhas abaixo
+\fontetipo{arial}
+%O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
+
+\fazlistasiglas[Lista de Abreviaturas e Siglas] % Parâmetro opcional é o título da lista.
+
+\instituicao{Universidade Tecnológica Federal do Paraná}
+\curso{Curso Superior de Tecnologia em Automação Industrial}
+\author{NOME DO PRIMEIRO AUTOR}
+\autordois{NOME DO SEGUNDO AUTOR}
+\autortres{NOME DO TERCEIRO AUTOR}
+\titulo{Aqui vai o TITULO DO TRAbalho QUE sera TransmFORmado Em TODAS MAIusculas}
+\labUTFPR{Laboratório de Sistemas de Potência}
+\orientador[Professor]{}{Nome do Professor}
+\local{Cornélio Procópio}
+\data{Janeiro de 2012}
+\discipUTFPR{Nome da disciplina}
+\begin{document}
+\capatrab
+% listas (opcionais, mas recomenda-se a partir de 5 elementos)
+\listadefiguras % geracao automatica da lista de figuras
+\listadetabelas % geracao automatica da lista de tabelas
+\listadesiglas % geracao automatica da lista de siglas
+\listadesimbolos % geracao automatica da lista de simbolos
+% sumario
+\sumario % geracao automatica do sumario
+\chapter{Introdução}
+Aqui vai a introdução do trabalho.
+
+Nesse arquivo de exemplo aparecem algumas dicas para quem está começando a trabalhar em \LaTeX, principalmente na área de Engenharia Elétrica, cujos trabalhos normalmente envolvem uma grande quantidade de equações, tabelas e figuras. Esse documento não tem a pretensão de ser um manual, tampouco uma apostila de \LaTeX, visto que existe uma grande quantidade desse tipo de material de boa qualidade disponíveis na internet. É recomendado também ler os manuais das classes \utfprtex~ e ABNTEX, pois muitas das futuras dúvidas podem estar respondidas lá.
+
+\chapter{Exemplos úteis de equações para quem está começando}
+
+No \LaTeX, você pode inserir elementos matemáticos no meio do texto, como por exemplo algumas variáveis ``$h_i$, $i=1,\dots,N$'', ou equações simples $a^2=b^2+c^2$ e até mais complexas como $\frac{{ - b \pm \sqrt {b^2  - 4ac} }}{{2a}}$.
+
+Um exemplo de equação muito utilizada na pós graduação da engenharia elétrica, é a representação de um problema de otimização do tipo:
+\begin{align}\label{eq:PIbase}
+	\begin{array}{l}
+	 \min \begin{array}{*{20}c}
+	   {} & {c(p_t )}  \\
+	\end{array} = \sum\limits_1^N {c\left( {p_{t_i } } \right)}  \times h_i  \\
+	 s.a.:\begin{array}{*{20}c}
+	   {} & {\left\{ \begin{array}{l}
+	 P_L  + \ell \left( {p_t ,p_h } \right) - p_t  - p_h  = 0 \\
+	 h^T q\left( {p_h } \right) - V_{esp}  = 0 \\
+	 p_t  - \bar p_t  + \bar s_t  = 0 \\
+	  - p_t  + \underline p_t  + \underline s_t  = 0 \\
+	 p_h  - \bar p_h  + \bar s_h  = 0 \\
+	  - p_h  + \underline p_h  + \underline s_h  = 0 \\
+	 \end{array} \right.}  \\
+	\end{array} \\
+	 \end{array}
+\end{align}
+onde
+\begin{description}
+	\item[$c(p_{t_i})$: ] Custo da unidade térmica no intervalo $i$, em $\$/h$;
+	\item[$p_t$: ] Vetor $N\times 1$ das potencias térmicas geradas nos $N$ intervalos;
+	\item[$p_h$: ] Vetor $N\times 1$ das potencias hidráulicas geradas nos $N$ intervalos;
+	\item[$q(p_h)$: ] Vetor $N\times 1$ das potencias turbinadas nos $N$ intervalos;
+	\item[$p_L$: ] Vetor $N\times 1$ das cargas elétricas nos $N$ intervalos;
+	\item[$\ell(p_t,p_h)$: ] Vetor $N\times 1$ das perdas de transmissão nos $N$ intervalos;
+	\item[$\bar p_t,\underline p_t$: ] Limites superiores e inferiores das potências térmicas geradas;
+	\item[$\bar p_h,\underline p_h$: ] Limites superiores e inferiores das potências hidráulicas geradas;
+	\item[$\bar s_t,\underline s_t$: ] Variáveis de folga correspondentes aos limites de $p_t$;
+	\item[$\bar s_h,\underline s_h$: ] Variáveis de folga correspondentes aos limites de $p_h$;
+\end{description}
+
+É muito comum também querer expressar a dimensão dos elementos de um vetor ou matriz, da seguinte forma:
+\begin{align}
+s=\left[\begin{array}{l}
+\bar s_t\\
+\underline s_t\\
+\bar s_h\\
+\underline s_h\\
+	\end{array}\right]
+	\begin{array}{c}
+\} N\times 1\\
+\} N\times 1\\
+\} N\times 1\\
+\} N\times 1\\
+  \end{array}
+		\hspace{2.5cm}
+\pi=\left[\begin{array}{l}
+\bar \pi_t\\
+\underline \pi_t\\
+\bar \pi_h\\
+\underline \pi_h\\
+	\end{array}\right]
+	\begin{array}{c}
+\} N\times 1\\
+\} N\times 1\\
+\} N\times 1\\
+\} N\times 1\\
+  \end{array}
+\end{align}
+
+Em problemas de otimização, a função lagrangeana pode ser escrita em \LaTeX  da seguinte forma:
+\begin{align}
+\begin{aligned}
+	 \mathcal{L}\left( {{{\mathbf{P}}_T } ,\lambda } \right) &= F\left( {{\mathbf{P}}_T } \right) + \lambda ^T \left( {{\mathbf{P}}_L  + \ell \left( {{\mathbf{P}}_T ,{\mathbf{P}}_H } \right) - {\mathbf{P}}_T  - {\mathbf{P}}_H } \right)...\\
+\end{aligned}
+\end{align}
+
+Para inserir uma figura, é utilizado o ambiente \verb+\figure+. Considera-se a figura \ref{f:usinas}. O comando \verb+\caption{}+ define a legenda da figura e o comando \verb+\label{}+, o nome pelo qual a figura será referenciada no arquivo .tex.
+
+Considere-se o segundo sistema:
+\begin{figure}[!hb]
+\centering
+\includegraphics[width=0.4\linewidth]{imagens/usinas.eps}%
+\caption{Sistema hidrotérmico formado por uma usina hidrelétrica e uma usina térmica}%
+\label{f:usinas}%
+\end{figure}
+
+A grande maioria das tabelas utilizadas em \LaTeX  são simples, apenas com um cabeçalho e os dados abaixo, com a seguinte tabela:
+\begin{table}[!h]
+  \centering
+  \caption{Variação da demanda no intervalos de tempo considerados}
+    \begin{tabular}{ccc}
+    \hline
+    Intervalo & Duração (hs) & Carga (MW) \\
+    \hline
+    1     & 7,0   &      400,0  \\
+    2     & 8,0   &      900,0  \\
+    3     & 5,0   &    1.600,0  \\
+    4     & 4,0   &    1.300,0  \\
+    \hline
+    \end{tabular}
+\end{table}
+
+Isso não quer dizer que tabelas mais complexas não possam ser elaboradas de acordo com a necessidade. Para citar uma referência no meio do texto, basta usar o comando \verb+\cite{}+ no local onde será inserido a informação bibliográfica, e o comando no final do trabalho \lstinline!\\bibliography{arquivo}!, onde ``arquivo'' é o arquivo .bib contendo as referências. Por exemplo, se neste parágrafo tivesse sido utilizado como referência o livro ``Power Generation, Operation and Control'' dos autores WOOD, A. J. e WOLLENBERG, B. F, ao final da frase apareceria \cite{wood}, e no final do arquivo seria criada a seção de referências, como aparece nesse arquivo de exemplo.
+
+\section{Siglas e s\'imbolos}
+
+O pacote \textsc{abn}\TeX\ permite ainda a defini\c{c}\~ao de siglas e s\'imbolos com indexa\c{c}\~ao autom\'atica atrav\'es dos comandos {\ttfamily \textbackslash sigla\{\}\{\}} e {\ttfamily \textbackslash simbolo\{\}\{\}}. Por exemplo, o significado das siglas \sigla{PPGEE}{Programa de Programa de Pós-Graduação em Engenharia Elétrica}, \sigla{COELT}{Coordenação de Eletrotécnica} e \sigla{UTFPR}{Universidade Tecnológica Federal do Paraná} aparecem automaticamente na lista de siglas, bem como o significado dos s\'imbolos \simbolo{$\lambda$}{comprimento de onda},\simbolo{$v$}{velocidade} e \simbolo{$f$}{frequ\^encia} aparecem automaticamente na lista de s\'imbolos.
+
+\bibliography{Referencias}
+%
+\end{document}
+

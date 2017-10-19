@@ -5,15 +5,17 @@
 %% Colaboradores:
 %%
 %%
+
 \documentclass[oneside,       % para impressão somente na frante. Oposto a twoside
                openright,     % capítulos começam em pág ímpar (insere página vazia caso preciso)
                a4paper,       % tamanho do papel.
                12pt,          % tamanho da fonte
                english,		  % idioma adicional para hifenização
-%               french,		  % idioma adicional para hifenização
+               french,		  % idioma adicional para hifenização
                spanish,		  % idioma adicional para hifenização
                brazil		  % o último idioma é o principal do documento
               ]{utfprcptex2}
+
 
 % ------
 %%% Pacotes diversos
@@ -21,16 +23,16 @@
 \usepackage[latin1]{inputenc} % pacote para acentuacao direta
 \usepackage{amsmath,amsfonts,amssymb,amsthm} % pacote matematico
 \usepackage{graphicx} % pacote grafico
-\usepackage[bottom]{footmisc}
+%\usepackage[bottom]{footmisc}
 \usepackage{subfig}
 \usepackage{threeparttable}
-
 
 % ---
 % Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
 % ---
 \usepackage{lipsum}				% para geração de dummy text
 % ---
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ambientes para definições, exemplos e teoremas
@@ -53,7 +55,7 @@
 \fontetipo{arial}
 
 
-
+%\cite{}\newcommand{\source}[1]{\caption*{Source: {#1}} }
 
 %O comando a seguir diz ao Latex para salvar as siglas em um arquivo separado:
 \fazlistasiglas[Lista de Siglas] % Parâmetro opcional é o título da lista.
@@ -61,6 +63,7 @@
 %%%% Ferramenta para criação de glossários
 \makeglossaries%% Não comente esta linha se estivar usando glossario
 \include{entradas_glossario}%% Entradas do glossário - Comente para remover este item
+%\include{entradas_acronimos}
 %%%%
 
 % ---------- Preambulo ----------
@@ -125,7 +128,7 @@
 %%%%                geração da ficha pela biblioteca.
 %%%%    - pdf: informar o nome do arquivo pdf com a ficha fornecinada
 %%%%           pela bibliteca.
-\folhaderosto[Fichacatalografica]
+\folhaderosto[FichaCatalografica]
 
 
 \termodeaprovacao % <- ainda a ser implementado corretamente
@@ -241,9 +244,8 @@ para gerar t\'itulos de anexos.
 %---------------------------------------------------------------------
 % INDICE REMISSIVO
 %---------------------------------------------------------------------
-%\onecolindex %% Para indice em uma coluna
-\twocolindex  %% Para indice em duas colunas
+\onecolindex %% Para indice em uma coluna
+%\twocolindex  %% Para indice em duas colunas
 \indiceremissivo
 %---------------------------------------------------------------------
-
-\end{document} 
+\end{document}
